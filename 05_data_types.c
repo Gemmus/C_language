@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int main(void){
+int main5(void){
 	// single character %c
 	char c = 'C';
 	printf("Character: C%c\n", c);
