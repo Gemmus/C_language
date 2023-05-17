@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void){
+int main9(void){
 	int x = 10;
 
 	// x = x + 2;
