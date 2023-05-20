@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void){
+int main27(void){
 
 	for(int i = 0; i <= 10; i++){
 		printf("%d\n", i);
