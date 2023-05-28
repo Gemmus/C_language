@@ -4,7 +4,7 @@
 int main5(void){
 	// single character %c
 	char c = 'C';
-	printf("Character: C%c\n", c);
+	printf("Character: %c\n", c);
 
 	// array of characters %s
 	char a[] = "Bro";
