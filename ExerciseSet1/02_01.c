@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-int main2_1(void){
+int main(void){
 
 	printf("Hello everybody!\n");
 
