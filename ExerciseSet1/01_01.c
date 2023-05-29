@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main1(void){
+int main(void){
 
 	int number;
 
