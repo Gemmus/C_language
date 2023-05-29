@@ -1,3 +1,5 @@
+// C program to find the area of a triangle whose three sides are given
+
 #include <stdio.h>
 #include <math.h>
 
