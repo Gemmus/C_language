@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-int main5(void){
+int main(void){
 
 	int count;
 	int multiplier = 1;
