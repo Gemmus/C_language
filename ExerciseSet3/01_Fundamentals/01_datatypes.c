@@ -5,7 +5,7 @@ How to use scanf() and printf() function perform input and output on primitive t
 
 #include <stdio.h>
 
-int main1(){
+int main(){
 
 	////////////////
 	// Characters //
