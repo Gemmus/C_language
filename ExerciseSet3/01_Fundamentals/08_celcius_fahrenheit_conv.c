@@ -10,7 +10,7 @@ Logic to convert temperature from Celsius to Fahrenheit in C.
 int main(){
 	double celcius, fahrenheit;
 
-	printf("Enter the value in centimeters:  ");
+	printf("Enter the value in Celcius:  ");
 	scanf("%lf", &celcius);
 
 	fahrenheit = (celcius * 9 / 5) + 32;
