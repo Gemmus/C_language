@@ -5,11 +5,10 @@ Logic to convert days to years, weeks and days in C program.
  */
 
 #include <stdio.h>
-#include <math.h>
 
 int main(){
 
-	int number , day, week, year;
+	int number, day, week, year;
 
 	printf("Enter the number of days:  ");
 	scanf("%d", &number);
