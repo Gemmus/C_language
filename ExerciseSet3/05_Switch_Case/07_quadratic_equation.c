@@ -15,7 +15,7 @@ int main(){
 	scanf("%lf", &a);
 	printf("Enter b:\n");
 	scanf("%lf", &b);
-	printf("Enter b:\n");
+	printf("Enter c:\n");
 	scanf("%lf", &c);
 
 	discriminant = pow(b, 2) - 4 * a * c;
