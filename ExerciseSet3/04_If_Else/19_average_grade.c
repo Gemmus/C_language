@@ -14,7 +14,7 @@ int main(void){
 
 	double grade1, grade2, grade3, grade4, grade5, average;
 
-	printf("Enter the five grades: ");
+	printf("Enter the five grades:\n");
 	scanf("%lf%lf%lf%lf%lf", &grade1, &grade2, &grade3, &grade4, &grade5);
 
 	average = (grade1 + grade2 + grade3 + grade4 + grade5) / 5;
