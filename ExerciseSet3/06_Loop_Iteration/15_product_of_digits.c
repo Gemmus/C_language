@@ -8,17 +8,17 @@ Logic to find product of digits of a given number in C program.
 
 int main(){
 
-	int number, sum = 1;
+	int number, product = 1;
 
 	printf("Enter a number:\n");
 	scanf("%d", &number);
 
 	do{
-		sum *= number % 10;
+		product *= number % 10;
 		number /= 10;
 	}while(number != 0);
 
-	printf("The product of the digits of the number is: %d.", sum);
+	printf("The product of the digits of the number is: %d.", product);
 
 	return 0;
 }
