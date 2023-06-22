@@ -4,7 +4,6 @@ How to find maximum and minimum of two or more numbers using functions in C prog
 */
 
 #include <stdio.h>
-#include <math.h>
 
 double minFinder(double num1, double num2);
 double maxFinder(double num1, double num2);
