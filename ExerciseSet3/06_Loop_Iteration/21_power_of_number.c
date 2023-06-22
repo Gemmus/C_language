@@ -17,4 +17,5 @@ int main()
 
     printf("%d on the power of %d is: %d.", base, exponent, result);
 
+    return 0;
 }
