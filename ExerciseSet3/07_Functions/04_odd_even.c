@@ -4,7 +4,6 @@ How to check even or odd using functions in C programming. Write a function in C
 */
 
 #include <stdio.h>
-#include <math.h>
 
 int oddChecker(int num);
 
