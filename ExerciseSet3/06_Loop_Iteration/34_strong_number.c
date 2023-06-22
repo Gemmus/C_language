@@ -28,5 +28,5 @@ int main()
 	if(number == sum) printf("%d == %d, it's a strong number.", number, sum);
 	else printf("%d != %d, it's not a strong number.", number, sum);
 
-  return 0;
+  	return 0;
 }
