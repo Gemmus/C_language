@@ -1,6 +1,7 @@
 /*
 Write a program in C to input a number and check whether the number is prime number or not using for loop.
-How to check prime numbers using loop in C programming. Logic to check prime numbers in C programming.
+How to check prime numbers using loop in C programming. 
+Logic to check prime numbers in C programming.
 */
 
 #include <stdio.h>
