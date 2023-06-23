@@ -1,7 +1,7 @@
 /*
-Write a recursive function in C programming to print all natural numbers between 1 to n.
-How to print all natural numbers from 1 to n using recursion in C program.
-ogic to print all natural numbers in given range using recursion in C programming.
+Write a recursive function in C programming to print all natural numbers between given range.
+How to print all natural numbers using recursion in C program.
+Logic to print all natural numbers in given range using recursion in C programming.
 */
 
 #include <stdio.h>
