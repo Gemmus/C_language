@@ -23,5 +23,5 @@ int main()
 	printf("Number before toggling %d bit: %d (in decimal).\n", n, number);
 	printf("Number after toggling %d bit: %d (in decimal).\n", n, newNumber);
 
-    return 0;
+   	return 0;
 }
