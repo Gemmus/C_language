@@ -12,7 +12,6 @@ and x ^ a will evaluate to b.
 */
 
 #include <stdio.h>
-#include <stdio.h>
 
 int main()
 {
