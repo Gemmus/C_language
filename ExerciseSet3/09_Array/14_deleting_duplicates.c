@@ -21,9 +21,9 @@ int main()
     {
     	for(int j = i + 1; j < size; j++)
         {
-    		if(array[i] == array[j])
+            if(array[i] == array[j])
             {
-    			for(int k = j; k < size - 1; k++)
+                for(int k = j; k < size - 1; k++)
                 {
     				array[k] = array[k + 1];
                 }
