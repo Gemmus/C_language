@@ -20,19 +20,19 @@ int main()
     }
 
     for(int i = 0; i < size; i++)
+    {
+    	count = 1;
+        for(int j= i + 1; j < size; j++)
         {
-    		count = 1;
-            for(int j= i + 1; j < size; j++)
+            if(array[i] == array[j])
             {
-            	if(array[i] == array[j])
-            	{
-            		count++;
-            	    frequency[j] = 0;
-            	}
+            	count++;
+            	frequency[j] = 0;
             }
-
-            if(frequency[i] != 0) frequency[i] = count;
         }
+
+        if(frequency[i] != 0) frequency[i] = count;
+    }
 
     printf("The unique element of the array:\n");
     for(int i = 0; i < size; i++) {
