@@ -21,7 +21,8 @@ int main()
             evenArray[evenIndex] = array[i];
             evenIndex++;
     	}
-    	else{
+    	else
+        {
             oddArray[oddIndex] = array[i];
             oddIndex++;
     	}
