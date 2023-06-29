@@ -29,9 +29,9 @@ int main()
                 }
                 size--;
                 j--;
-                }
             }
         }
+    }
 
     printf("Array elements after deleting duplicates:\n");
     for(int i = 0; i < size; i++) printf("%d; ", array[i]);
