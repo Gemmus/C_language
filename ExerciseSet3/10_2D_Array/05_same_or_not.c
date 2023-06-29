@@ -1,5 +1,5 @@
 /*
-rite a C program to enter elements in two matrices and check whether both matrices are equal or not.
+Write a C program to enter elements in two matrices and check whether both matrices are equal or not.
 C program to check whether elements of two matrices are equal or not.
 Logic to check if two matrices are equal or not in C programming.
 */
