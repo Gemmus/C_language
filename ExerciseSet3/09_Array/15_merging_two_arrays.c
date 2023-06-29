@@ -38,17 +38,17 @@ int main()
     }
 
     while(index1 < size1)
-      {
-          array3[index3] = array1[index1];
-          index3++;
-          index1++;
-      }
-      while(index2 < size2)
-      {
-          array3[index3] = array2[index2];
-          index3++;
-          index2++;
-      }
+    {
+        array3[index3] = array1[index1];
+        index3++;
+        index1++;
+    }
+    while(index2 < size2)
+    {
+        array3[index3] = array2[index2];
+        index3++;
+        index2++;
+    }
 
     printf("The merged array: ");
     for(int i = 0; i < size3; i++) printf("%d, ", array3[i]);
