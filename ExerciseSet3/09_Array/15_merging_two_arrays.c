@@ -27,7 +27,7 @@ int main()
         if(index1 >= size1 || index2 >= size2) break;
         if(array1[index1] < array2[index2])
         {
-        	array3[index3] = array1[index1];
+            array3[index3] = array1[index1];
             index1++;
         }
         else
