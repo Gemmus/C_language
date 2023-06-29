@@ -19,10 +19,10 @@ int main()
 
     int j = 0;
     for(int i = size; i >= 0; i--)
-       {
-           arrayReversed[j] = array[i - 1];
-           j++;
-       }
+    {
+        arrayReversed[j] = array[i - 1];
+        j++;
+    }
 
     printf("The numbers of the original array:\n");
     for(int i = 0; i < size; i++) printf("%d, ", array[i]);
