@@ -16,13 +16,14 @@ int main()
     for(int i = 0; i < size; i++) scanf("%d", &array[i]);
 
     for(int i = 0; i < size; i++){
-    	if(array[i] % 2 == 0) {
-    		evenArray[evenIndex] = array[i];
-    		evenIndex++;
+    	if(array[i] % 2 == 0) 
+        {
+            evenArray[evenIndex] = array[i];
+            evenIndex++;
     	}
     	else{
-    		oddArray[oddIndex] = array[i];
-    		oddIndex++;
+            oddArray[oddIndex] = array[i];
+            oddIndex++;
     	}
     }
 
