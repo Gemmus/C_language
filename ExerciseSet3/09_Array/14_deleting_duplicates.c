@@ -25,7 +25,7 @@ int main()
             {
                 for(int k = j; k < size - 1; k++)
                 {
-    				array[k] = array[k + 1];
+                    array[k] = array[k + 1];
                 }
                 size--;
                 j--;
