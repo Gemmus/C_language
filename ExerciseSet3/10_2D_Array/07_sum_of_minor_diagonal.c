@@ -15,7 +15,7 @@ int main()
     for(row = 0; row < SIZE; row++)
     {
         for(column = 0; column < SIZE; column++)
-        {ac
+        {
             scanf("%d", &array[row][column]);
         }
 
