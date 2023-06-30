@@ -23,7 +23,6 @@ int main()
         {
             scanf("%d", &array2[row][column]);
         }
-
     }
 
     a = array2[0][0];
@@ -42,7 +41,6 @@ int main()
         {
             scanf("%d", &array3[row][column]);
         }
-
     }
 
     a = array3[0][0];
