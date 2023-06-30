@@ -55,7 +55,7 @@ int main()
     h = array3[2][1];
     i = array3[2][2];
 
-    determinant3 = a * (e* i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+    determinant3 = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
     printf("The determinant of the 3x3 matrix is: %d.", determinant3);
 
     return 0;
