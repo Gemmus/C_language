@@ -21,5 +21,5 @@ int main()
 
 	printf("Sum of the two numbers: %d.", *ptr1 + *ptr2);
 
-  return 0;
+  	return 0;
 }
