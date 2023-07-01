@@ -27,5 +27,5 @@ int main()
 
 	printf("The new num1: %d and the new num2: %d.\n", *ptr1, *ptr2);
 
-    return 0;
+ 	return 0;
 }
