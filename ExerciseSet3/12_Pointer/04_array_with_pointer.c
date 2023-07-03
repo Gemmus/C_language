@@ -24,7 +24,7 @@ int main()
 	printf("Array elements: ");
 	for (int i = 0; i < size; i++){
 		printf("%d, ", *ptr);
-	    ptr++;
+	    	ptr++;
 	}
 
     return 0;
