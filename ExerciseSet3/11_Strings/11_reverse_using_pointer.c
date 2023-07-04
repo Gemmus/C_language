@@ -11,9 +11,9 @@ C program to reverse a string using strrev() string function.
 int main()
 {
 	char input[MAX_SIZE], reverse[MAX_SIZE];
-    char *iPtr = input;
-    char *rPtr = reverse;
-    int len = 0;
+	char *iPtr = input;
+	char *rPtr = reverse;
+	int len = 0;
 
 	printf("Enter your text:\n");
 	gets(input);
