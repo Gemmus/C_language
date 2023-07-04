@@ -17,7 +17,8 @@ int main()
     char filePath[100], dataToAppend[BUFFER_SIZE];
 
     printf("Enter file path:\n");
-    scanf("%s", filePath);
+    fgets(dataToAppend, BUFFER_SIZE, stdin);
+    sscanf(dataToAppend, "%s", filePath);
 
     fPtr = fopen(filePath, "a");
 
@@ -26,8 +27,6 @@ int main()
         printf("Unable to open '%s' file.\n", filePath);
         exit(EXIT_FAILURE);
     }
-
-    getchar();
 
     printf("Enter data to append:\n");
     fgets(dataToAppend, BUFFER_SIZE, stdin);
