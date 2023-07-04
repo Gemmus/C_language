@@ -20,7 +20,7 @@ int main()
     	if((*ptr >= 'a' && *ptr <= 'z') || (*ptr >= 'A' && *ptr <= 'Z')) letter++;
     	else if(*ptr >= '0' && *ptr <= '9') number++;
     	else special++;
-      ptr++;
+        ptr++;
     }
 
     printf("The digit(s) in the string: %d.\n", letter);
