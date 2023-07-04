@@ -19,7 +19,6 @@ int main()
     printf("Enter file path:\n");
     scanf("%s", filePath);
 
-
     fPtr = fopen(filePath, "a");
 
     if (fPtr == NULL)
@@ -27,6 +26,8 @@ int main()
         printf("Unable to open '%s' file.\n", filePath);
         exit(EXIT_FAILURE);
     }
+
+    getchar();
 
     printf("Enter data to append:\n");
     fgets(dataToAppend, BUFFER_SIZE, stdin);
