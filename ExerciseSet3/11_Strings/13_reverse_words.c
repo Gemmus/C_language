@@ -1,7 +1,7 @@
 /*
-Write a C program to check whether a string is palindrome or not without using loop.
-How to check whether a string is palindromic string or not in C programming.
-Logic to check palindrome string in C program.
+Write a C program to input any string from user and reverse the order of words. 
+How to reverse the order of words in a given string using C programming. 
+Logic to reverse the order of words in a sentence using C program.
 */
 
 #include <stdio.h>
