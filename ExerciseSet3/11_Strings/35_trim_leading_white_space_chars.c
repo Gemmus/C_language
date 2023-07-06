@@ -22,6 +22,8 @@ int main()
     printf("Enter the text:\n");
     gets(input);
 
+    printf("String before trimming leading whitespace: \n%s", input);
+	
     trimLeading(input);
 
     printf("String after trimming leading whitespace: \n%s", input);
