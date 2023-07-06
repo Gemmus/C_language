@@ -2,6 +2,14 @@
 Write a C program to trim leading white space characters from a given string using loop.
 How to remove leading white space characters from a given string using loop in C programming.
 Logic to remove leading/starting blank spaces from a given string in C programming.
+
+Example:
+Enter the text:
+		I love cats.
+String before trimming leading whitespace: 
+'		I love cats.'
+String after trimming leading whitespace: 
+'I love cats.'
 */
 
 #include <stdio.h>
@@ -16,11 +24,11 @@ int main()
     printf("Enter the text:\n");
     gets(input);
 
-    printf("String before trimming leading whitespace: \n%s", input);
-	
+    printf("String before trimming leading whitespace: \n'%s'\n", input);
+
     trimLeading(input);
 
-    printf("String after trimming leading whitespace: \n%s", input);
+    printf("String after trimming leading whitespace: \n'%s'", input);
 
     return 0;
 }
@@ -42,4 +50,3 @@ void trimLeading(char * str)
     	str[i] = '\0';
 	}
 }
-
