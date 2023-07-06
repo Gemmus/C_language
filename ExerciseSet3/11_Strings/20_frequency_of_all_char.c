@@ -29,9 +29,9 @@ int main()
 
     printf("Frequency of all characters:\n");
     for(i = 0; i < MAX_CHARS; i++)
-	{
+    {
     	if(freq[i] != 0) printf("'%c': %d\n", (i + 97), freq[i]);
-	}
+    }
 
     return 0;
 }
