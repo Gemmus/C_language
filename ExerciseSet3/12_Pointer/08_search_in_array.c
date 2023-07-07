@@ -31,7 +31,7 @@ int main()
 			index = i;
 			break;
 		}
-    ptr++;
+    		ptr++;
 	}
 
 	if(index >= 0) printf("The number is located at index %d.", index);
