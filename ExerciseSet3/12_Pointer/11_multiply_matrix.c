@@ -14,43 +14,43 @@ void multiplyMatrix(int matrix1[][COLS], int matrix2[][COLS], int matrix3[][COLS
 
 int main()
 {
-    int matrix1[ROWS][COLS], matrix2[ROWS][COLS], matrix3[ROWS][COLS];
+    	int matrix1[ROWS][COLS], matrix2[ROWS][COLS], matrix3[ROWS][COLS];
 
-    printf("Enter elements in first %d x %d matrix:\n", ROWS, COLS);
-    inputMatrix(matrix1);
+    	printf("Enter elements in first %d x %d matrix:\n", ROWS, COLS);
+    	inputMatrix(matrix1);
 
-    printf("Enter elements in second %d x %d matrix:\n", ROWS, COLS);
-    inputMatrix(matrix2);
+    	printf("Enter elements in second %d x %d matrix:\n", ROWS, COLS);
+    	inputMatrix(matrix2);
 
-    multiplyMatrix(matrix1, matrix2, matrix3);
+    	multiplyMatrix(matrix1, matrix2, matrix3);
 
-    printf("Elements of the third %d x %d matrix:\n", ROWS, COLS);
-    printMatrix(matrix3);
+    	printf("Elements of the third %d x %d matrix:\n", ROWS, COLS);
+    	printMatrix(matrix3);
 
-    return 0;
+    	return 0;
 }
 
 void inputMatrix(int matrix[][COLS])
 {
-    for(int i = 0; i < ROWS; i++)
-    {
-        for(int j = 0; j < COLS; j++)
-        {
-            scanf("%d", (*(matrix + i) + j));
-        }
-    }
+    	for(int i = 0; i < ROWS; i++)
+    	{
+        	for(int j = 0; j < COLS; j++)
+        	{
+            	scanf("%d", (*(matrix + i) + j));
+        	}
+    	}
 }
 
 void printMatrix(int matrix[][COLS])
 {
-    for (int i = 0; i < ROWS; i++)
-    {
-        for (int j = 0; j < COLS; j++)
-        {
-            printf("%d ", *(*(matrix + i) + j));
-        }
-        printf("\n");
-    }
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+        	{
+            	printf("%d ", *(*(matrix + i) + j));
+        	}
+        	printf("\n");
+    	}
 }
 
 void multiplyMatrix(int matrix1[][COLS], int matrix2[][COLS], int matrix3[][COLS])
