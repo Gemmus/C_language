@@ -31,11 +31,11 @@ int main()
     	if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\0') word++;
     }
 
-	if (character > 0)
-	{
-		word++;
+    if (character > 0)
+    {
+	word++;
     	line++;
-	}
+    }
 
     printf("Total characters: %d.\n", character);
     printf("Total words: %d.\n", word);
