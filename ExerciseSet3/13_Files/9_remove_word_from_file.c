@@ -4,10 +4,6 @@ Logic to remove word from file in C programming.
 How to remove word from file in C program.
 */
 
-/**
- * C program to delete a word from file.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
