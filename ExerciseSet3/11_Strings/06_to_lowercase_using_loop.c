@@ -16,7 +16,7 @@ int main()
 
     for(int i = 0; input[i]!='\0'; i++)
     {
-        if(input[i]>= 'A' && input[i] <= 'z')
+        if(input[i]>= 'A' && input[i] <= 'Z')
         {
             input[i] = input[i] + 32;
         }
