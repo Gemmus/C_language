@@ -18,7 +18,6 @@ int main()
     char newline[BUFFER_SIZE];
     int line, count;
 
-
     printf("Enter path of source file:\n");
     scanf("%s", path);
 
