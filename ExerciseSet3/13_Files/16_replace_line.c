@@ -3,9 +3,6 @@ Write a C program to input line number and replace specific line with another in
 How to replace specific line in a text file in C programming. 
 Logic to replace specific line with another in a text file in C program.
 */
-/**
- * C program to replace a specific line with another in a file.
- */
 
 #include <stdio.h>
 #include <stdlib.h>
