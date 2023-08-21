@@ -5,14 +5,14 @@ int main(void)
     int number_of_students = 0, student = -1, grade = -2;
 
     do {
-        printf("How many students: ");
+        printf("How many array_of_grades: ");
         scanf("%d", &number_of_students);
     } while(number_of_students <= 0);
 
-    int students[number_of_students];
+    int array_of_grades[number_of_students];
 
     for(int i = 0; i < number_of_students; i++) {
-        students[i] = -1;
+        array_of_grades[i] = -1;
     }
 
     do {
@@ -27,17 +27,13 @@ int main(void)
                 scanf("%d", &grade);
             }
             if((0 <= grade) && (grade <= 5)) {
-            //if(0 <= grade <= 5) {
-                students[student - 1] = grade;
+                array_of_grades[student - 1] = grade;
             }
             else if(grade == -1) {
                 student = -1;
             }
         }
-        else if(student == 0) {
-            break;
-        }
-        else {
+        else if (student != 0){
             printf("Invalid student number!\n");
         }
     } while(student != 0);
@@ -46,8 +42,8 @@ int main(void)
 
     for(int i = 0; i < number_of_students; i++) {
 
-        if (students[i] != -1) {
-            printf("%-8d   %-8d\n", i + 1, students[i]);
+        if (array_of_grades[i] != -1) {
+            printf("%-8d   %-8d\n", i + 1, array_of_grades[i]);
         }
         else {
             printf("%-8d   N/A\n", i + 1);
