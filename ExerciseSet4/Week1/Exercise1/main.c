@@ -2,8 +2,8 @@
 
 int main()
 {
-    double bus_ticket, taxi_trip, money;
-    int selection;
+    double bus_ticket = 0, taxi_trip = 0, money = 0;
+    int selection = 0;
 
     printf("Enter price of bus ticket: ");
     scanf("%lf", &bus_ticket);
@@ -24,29 +24,25 @@ int main()
         scanf("%d", &selection);
 
         if(selection == 1) {
+            printf("You chose bus.\n");
             if(money >= bus_ticket) {
                 money -= bus_ticket;
-                printf("You chose bus.\n"
-                       "You have %.2lf euros left.\n", money);
             }
             else {
-                printf("You chose bus.\n"
-                       "You don't have enough money for bus.\n"
-                       "You have %.2lf euros left.\n", money);
+                printf("You don't have enough money for bus.\n");
             }
+            printf("You have %.2lf euros left.\n", money);
         }
 
         else if (selection == 2) {
+            printf("You chose taxi.\n");
             if(money >= taxi_trip) {
                 money -= taxi_trip;
-                printf("You chose taxi.\n"
-                       "You have %.2lf euros left.\n", money);
             }
             else {
-                printf("You chose taxi.\n"
-                       "You don't have enough money for taxi.\n"
-                       "You have %.2lf euros left.\n", money);
+                printf("You don't have enough money for taxi.\n");
             }
+            printf("You have %.2lf euros left.\n", money);
         }
 
         else {
