@@ -14,9 +14,8 @@ int main(void)
     printf("How much money you have: ");
     scanf("%lf", &money);
 
-    printf("You have %.2lf euros left.\n", money);
-
     while((money >= bus_ticket) || (money >= taxi_trip)) {
+        printf("You have %.2lf euros left.\n", money);
         printf("Do you want to take\n");
         printf(" 1) bus (%.2lf euros)\n", bus_ticket);
         printf(" 2) taxi (%.2lf euros)\n", taxi_trip);
@@ -31,7 +30,6 @@ int main(void)
             else {
                 printf("You don't have enough money for bus.\n");
             }
-            printf("You have %.2lf euros left.\n", money);
         }
 
         else if (selection == 2) {
@@ -42,7 +40,6 @@ int main(void)
             else {
                 printf("You don't have enough money for taxi.\n");
             }
-            printf("You have %.2lf euros left.\n", money);
         }
 
         else {
@@ -50,6 +47,7 @@ int main(void)
         }
     }
 
+    printf("You have %.2lf euros left.\n", money);
     printf("You need to walk. Bye");
 
     return 0;
