@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main()
+int main(void)
 {
     double bus_ticket = 0, taxi_trip = 0, money = 0;
     int selection = 0;
