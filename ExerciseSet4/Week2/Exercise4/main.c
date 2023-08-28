@@ -24,10 +24,10 @@ int main(void)
 
     if (count > 0) {
         average = (double) total /count;
-        printf("You entered %d positive numbers. The average is: %.3lf ", count, average);
+        printf("You entered %d positive numbers. The average is: %.3lf\n", count, average);
     }
     else {
-        printf("No positive numbers were entered, thus average cannot be calculated. Bye!");
+        printf("No positive numbers were entered, thus average cannot be calculated. Bye!\n");
     }
     
     return 0;
