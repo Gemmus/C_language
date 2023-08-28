@@ -29,6 +29,7 @@ int main(void)
     else {
         printf("No positive numbers were entered, thus average cannot be calculated. Bye!");
     }
+    
     return 0;
 }
 
