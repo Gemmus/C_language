@@ -3,17 +3,17 @@
 #include <time.h>
 
 void roll_printer(int highest_value, int random_num);
-void roll_D6();
-void roll_D10();
+void roll_dice(int highest_value);
 
 int main(void)
 {
     unsigned int selection = 0;
+    const int smaller_dice = 6, bigger_dice = 10;
 
     printf("Select from the following operations:\n"
-           "Roll D6 --> Enter: 1\n"
-           "Roll D10 --> Enter: 2\n"
-           "Quit --> Enter: 3\n");
+           "Roll D%d --> Enter: 1\n"
+            "Roll D%d --> Enter: 2\n"
+           "Quit --> Enter: 3\n", smaller_dice, bigger_dice);
 
     do {
 
@@ -32,13 +32,13 @@ int main(void)
 
     switch(selection) {
         case 1:
-            roll_D6();
+            roll_dice(smaller_dice);
             break;
         case 2:
-            roll_D10();
+            roll_dice(bigger_dice);
             break;
         case 3:
-            printf("You selected to quit. Bye!\n");
+            printf("You selected quit. Bye!\n");
             break;
     }
 
@@ -52,17 +52,8 @@ void roll_printer(int highest_value, int random_num)
            "You rolled: %d.\n", highest_value, random_num);
 }
 
-void roll_D6()
+void roll_dice(int highest_value)
 {
-    int highest_value = 6;
-    srand(time(0));
-    roll_printer(highest_value, (rand() % highest_value) + 1);
-
-}
-
-void roll_D10()
-{
-    int highest_value = 10;
     srand(time(0));
     roll_printer(highest_value, (rand() % highest_value) + 1);
 }
