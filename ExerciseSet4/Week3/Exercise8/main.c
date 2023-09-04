@@ -11,23 +11,22 @@ Write a program that defines an array of 15 integers
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#define MAX_SIZE 15
 
 void print_numbers(const int *array, int count);
 
 int main(void) {
 
     int highest_value = 1000000;
-    int count = 15;
-    int array[count];
-    int *ptr = array;
+    int array[MAX_SIZE];
 
     srand(time(0));
 
-    for(int i = 0; i < count; i++) {
+    for(int i = 0; i < MAX_SIZE; i++) {
         array[i] = (rand() % highest_value) + 1;
     }
 
-    print_numbers(ptr, count);
+    print_numbers(array, MAX_SIZE);
 
     return 0;
 }
@@ -39,4 +38,3 @@ void print_numbers(const int *array, int count) {
     }
 
 }
-
