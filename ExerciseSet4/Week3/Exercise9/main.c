@@ -75,7 +75,7 @@ int find_first(const unsigned int *array, unsigned int what) {
 
     int index = 0;
 
-    while((array[index] != 0) && (array[index] != what)) {
+    while((array[index] != what) && (array[index] != 0)) {
         index++;
     }
 
