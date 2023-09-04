@@ -79,7 +79,7 @@ int find_first(const unsigned int *array, unsigned int what) {
         index++;
     }
 
-    if(index == (MAX_SIZE - 1)) {
+    if(array[index] == 0) {
         return -1;
     } else {
         return index;
