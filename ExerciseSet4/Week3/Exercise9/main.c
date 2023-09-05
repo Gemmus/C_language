@@ -29,14 +29,14 @@ int find_first(const unsigned int *array, unsigned int what);
 int main(void) {
 
     unsigned int array[MAX_SIZE];
-    int i, input = -1, retval = -1;
+    int index, input = -1, retval = -1;
 
     srand(time(0));
 
-    for(i = 0; i < MAX_SIZE - 1; i++) {
-        array[i] = (rand() % MAX_SIZE) + 1;
+    for(index = 0; index < MAX_SIZE - 1; index++) {
+        array[index] = (rand() % MAX_SIZE) + 1;
     }
-    array[i++] = 0;
+    array[index++] = 0;
 
     print_numbers(array, MAX_SIZE);
 
@@ -46,12 +46,12 @@ int main(void) {
         if (scanf("%d", &input) != 1) {
             while(getchar() != '\n');
             printf("Incorrect input.\n");
-        } else if((input < 0) || (input > 20)) {
+        } else if((input < 0) || (input > MAX_SIZE)) {
             printf("Incorrect input.\n");
         } else if(input > 0) {
             retval = find_first(array, input);
             if (retval != - 1) {
-                printf("The first index of %d is: %d.\n", input, retval);
+                printf("The first occurrence of %d is at index: %d.\n", input, retval);
             } else {
                 printf("Not found.\n");
             }
@@ -65,24 +65,20 @@ int main(void) {
 
 void print_numbers(const unsigned int *array, int count) {
 
-    for(int i = 0; i < count; i++) {
-        printf("%2d\n", array[i]);
+    for(int index = 0; index < count; index++) {
+        printf("%2d\n", array[index]);
     }
 
 }
 
 int find_first(const unsigned int *array, unsigned int what) {
 
-    int index = 0;
-
-    while((array[index] != what) && (array[index] != 0)) {
-        index++;
+    for(int index = 0; array[index] != 0; index++) {
+        if (array[index] == what) {
+            return index;
+        }
     }
 
-    if(array[index] == 0) {
-        return -1;
-    } else {
-        return index;
-    }
+    return -1;
 
 }
