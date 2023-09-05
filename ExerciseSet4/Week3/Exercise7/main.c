@@ -43,16 +43,15 @@ int main(void) {
     bool retval = false;
     unsigned int counter = 0;
     int number = -1;
-    int *value = &number;
 
     while (counter < 3) {
         printf("Guess how much money I have!\n");
 
-        retval = read_positive(value);
+        retval = read_positive(&number);
 
         if (retval == true) {
 
-            printf("You didn't get it right. I have %d euros.\n", *value * 2 + 20);
+            printf("You didn't get it right. I have %d euros.\n", number * 2 + 20);
 
         } else {
             counter++;
