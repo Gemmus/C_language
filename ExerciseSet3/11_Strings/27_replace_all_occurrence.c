@@ -8,7 +8,7 @@ Logic to replace all occurrences of a character in given string.
 #include <string.h>
 #define MAX_SIZE 100
 
-void replaceAll(char *, const char, const char);
+void replaceAll(char * input, const char, const char);
 
 int main()
 {
