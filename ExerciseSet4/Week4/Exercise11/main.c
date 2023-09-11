@@ -21,3 +21,47 @@ Write a program that asks user to enter both strings and then calls replace_char
 The program prints both return value and the modified string if the return value is greater than zero.
 If the return value is zero program prints “String was not modified”.
 */
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGTH 100
+#define REPL_LENGTH 3
+
+int replace_char(char *str, const char *repl);
+
+int main(void) {
+
+    int count = -1;
+    char text[MAX_LENGTH], replacement[REPL_LENGTH];
+
+    printf("Enter the text part: ");
+    fgets(text, MAX_LENGTH, stdin);
+    text[strcspn(text, "\n")] = 0;
+
+    printf("Enter the letter to be replaced and the replacement letter: ");
+    fgets(replacement, REPL_LENGTH, stdin);
+    replacement[strcspn(replacement, "\n")] = 0;
+
+    count = replace_char(text, replacement);
+
+    if (count == 0) {
+        printf("String was not modified.");
+    } else {
+        printf("%s", text);
+    }
+
+    return 0;
+}
+
+int replace_char(char *str, const char *repl)
+{
+    int count = 0;
+    while(str[count] != '\0') {
+        if(str[count] == repl[0]) {
+            str[count] = repl[1];
+        }
+        count++;
+    }
+    return count;
+}
