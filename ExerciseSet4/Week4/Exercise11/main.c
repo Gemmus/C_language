@@ -41,6 +41,7 @@ int main(void) {
 
     printf("Enter the letter to be replaced and the replacement letter: ");
     fgets(replacement, REPL_LENGTH, stdin);
+
     replacement[strcspn(replacement, "\n")] = 0;
 
     count = replace_char(text, replacement);
@@ -56,12 +57,14 @@ int main(void) {
 
 int replace_char(char *str, const char *repl)
 {
-    int count = 0;
-    while(str[count] != '\0') {
-        if(str[count] == repl[0]) {
-            str[count] = repl[1];
+    int replace_count = 0;
+
+    for(; *str != '\0'; str++) {
+        if(*str == repl[0]) {
+            *str = repl[1];
+            replace_count++;
         }
-        count++;
     }
-    return count;
+
+    return replace_count;
 }
