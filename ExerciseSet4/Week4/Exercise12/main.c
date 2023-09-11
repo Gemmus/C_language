@@ -14,6 +14,7 @@ Write a program that asks user to enter a string and a word.
 Then program calls count_words and prints the return value. 
 If the word was “stop” the program stops otherwise it asks user to enter a string and a word again.
 */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
