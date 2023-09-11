@@ -1,10 +1,3 @@
-/*
-Write a program that asks user to enter a string.
-Program must use fgets to read user input and remove the linefeed at the end of the string.
-Then program prints the length of the string and checks if the string is “stop”.
-If it is the program stops else program asks user to enter a new string (and prints the length etc.)
- */
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -17,13 +10,12 @@ void length_counter_printer(const char * str);
 int main(void)
 {
 
-    bool same = false;
     char input[MAX_LENGTH];
     const char exit[] = "stop";
 
     int retval = -1;
 
-    while(false == same) {
+    do {
 
         printf("Enter a string: ");
         fgets(input, MAX_LENGTH, stdin);
@@ -31,17 +23,15 @@ int main(void)
         //  Removing the linefeed at the end of the string:
         input[strcspn(input, "\n")] = 0;
 
+        // Calling function to count string length:
+        length_counter_printer(input);
+
         // Calling function to check if string == 'stop', if so, exits.
         retval = string_comparer(input, exit);
-        if (0 == retval) {
-            printf("You chose to stop. Bye!");
-            same = true;
-        }
-        else {
-            // Calling function to count string length:
-            length_counter_printer(input);
-        }
-    }
+
+    } while(retval != 0);
+
+    printf("You chose to stop. Bye!");
 
     return 0;
 }
@@ -57,7 +47,7 @@ void length_counter_printer(const char * str)
 
 int string_comparer(const char * str1, const char * str2)
 {
-    while((*str1 && *str2) && (*str1 == *str2)) {
+    while(*str1 && *str2 && (*str1 == *str2)) {
         str1++; str2++;
     }
     return *str1 - *str2;
