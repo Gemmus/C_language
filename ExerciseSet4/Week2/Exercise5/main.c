@@ -52,7 +52,7 @@ int main(void)
         if (computer_num != maximum) {
             printf("I got %d. I win!\n", computer_num + 1);
         }
-          
+
         else {
             printf("I got %d. It is a tie!\n", computer_num);
         }
@@ -67,19 +67,17 @@ int main(void)
 int read_range(int low, int high)
 {
     int number = low - 1;
-  
     do {
-      
+
         if (scanf("%d", &number) != 1) {
             while(getchar() != '\n');
-            printf("Invalid input.\n");
+            printf("Invalid input. Try again: ");
         }
-      
-        if ((number < low) || (number > high)) {
+
+        else if ((number < low) || (number > high)) {
             printf("Out of range! Try again: ");
         }
-      
+
     } while ((number < low) || (number > high));
 
     return number;
-}
