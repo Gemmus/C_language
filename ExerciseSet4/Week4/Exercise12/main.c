@@ -47,7 +47,7 @@ int main(void) {
         if (count == 0) {
             printf("\"%s\" is not found in: \"%s\"\n", word, text);
         } else if (count > 0) {
-            printf("\"%s\" occurs %d times in: \"%s\"\n", word, count, text);
+            printf("\"%s\" occurs %d time(s) in: \"%s\"\n", word, count, text);
         }
 
         retval = string_comparer(word, exit);
