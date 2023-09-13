@@ -94,7 +94,7 @@ void len_count_print_strlen(char input[])
 
 void len_count_print_ptr(const char * str)
 {
-    unsigned int count = 0;
+    int count = 0;
     while(str[count] != '\0') {
         count++;
     }
