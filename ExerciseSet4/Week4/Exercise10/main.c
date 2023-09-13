@@ -14,7 +14,7 @@ void len_count_print_for(char input[]);
 void len_count_print_while(char input[]);
 void len_count_print_strlen(char input[]);
 void len_count_print_ptr(const char * str);
-int str_comp_strcmp(const char * str1, const char * str2);
+int str_comp_strcmp(char input[], char exit[]);
 int str_comp_ptr(const char * str1, const char * str2);
 
 int main(void)
@@ -101,9 +101,9 @@ void len_count_print_ptr(const char * str)
     printf("\"%s\" contains %d characters.\n", str, count);
 }
 
-int str_comp_strcmp(const char * str1, const char * str2)
+int str_comp_strcmp(char input[], char exit[])
 {
-    return strcmp(str1, str2);
+    return strcmp(input, exit);
 }
 
 int str_comp_ptr(const char * str1, const char * str2)
