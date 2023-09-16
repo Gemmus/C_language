@@ -32,16 +32,17 @@ Enter your score for Python (0-100): 92
 Enter subject 3 name: Computer Architecture
 Enter your score for Computer Architecture (0-100): 68
   
-------------------------------------------
+-------------------------------------------
 Student: John Deere
-------------------------------------------
-Subject Score Grade
-------------------------------------------
-C Programming 85% 4
-Python 92% 5
-Computer Architecture 68% 2
+-------------------------------------------
+Subject                    Score     Grade
+-------------------------------------------
+C Programming                85%         4
+Python                       92%         5
+Computer Architecture        68%         2
+
 Average Grade: 3.67
-------------------------------------------
+-------------------------------------------
 */
 
 #include <stdio.h>
