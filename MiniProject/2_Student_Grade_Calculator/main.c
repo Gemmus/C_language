@@ -52,18 +52,17 @@ Average Grade: 3.67
 #define MAX_LENGTH 50
 #define MIN_ITEM 1
 #define MAX_ITEM 100
-#define MIN_GRADE 0
-#define MAX_GRADE 100
-#define DATA_SIZE 1000000
+#define MIN_SCORE 0
+#define MAX_SCORE 100
 
 int int_validator(int low, int high);
 int grade_calculator(int score);
 
 int main(void)
 {
-    ////////////////////////////////////
-    //   Handles the user interface   //
-    ////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    //   Handles the user inputs and score/grade manipulation:   //
+    ///////////////////////////////////////////////////////////////
 
     char name[MAX_LENGTH];
     int num_subject = 0, total = 0;
@@ -83,20 +82,25 @@ int main(void)
         printf("Enter subject %d name: ", i + 1);
         fgets(subjects[i], MAX_LENGTH, stdin);
         subjects[i][strlen(subjects[i])-1] = '\0';
-        printf("Enter your score for C Programming (0-100): ");
-        scores[i] = int_validator(MIN_GRADE, MAX_GRADE);
+        printf("Enter your score for %s (%d-%d): ", subjects[i], MIN_SCORE, MAX_SCORE);
+        scores[i] = int_validator(MIN_SCORE, MAX_SCORE);
         grades[i] = grade_calculator(scores[i]);
         total += grades[i];
     }
 
     average = total / (double) num_subject;
+    printf("\n");
 
-    printf("\n-----------------------------------------------------------------------\n"
+    /////////////////////////////////////////
+    //   Creates the report for console:   //
+    /////////////////////////////////////////
+
+    printf("-----------------------------------------------------------------------\n"
            "Student: %s \n"
            "-----------------------------------------------------------------------\n"
-           "Subject                                           Score          Grade\n"
+           "Subject                                           Score          Grade \n"
            "-----------------------------------------------------------------------\n"
-           , name);
+            , name);
 
     for(int i = 0; i < num_subject; i++) {
         printf("%-50s %3d%% %14d\n", subjects[i], scores[i], grades[i]);
@@ -106,23 +110,24 @@ int main(void)
            "-----------------------------------------------------------------------\n"
             , average);
 
-    ///////////////////////////////
-    //   Handles the file part   //
-    ///////////////////////////////
+    //////////////////////////////////////
+    //   Creates the report for file:   //
+    //////////////////////////////////////
 
+    char filename[MAX_LENGTH] = "grade_report.txt";
     FILE * fPtr;
-    fPtr = fopen("student_grade_ave.txt", "a");
+    fPtr = fopen(filename, "w");
 
     if(fPtr == NULL)
     {
-        printf("\nUnable to create file. :(\n");
+        printf("\nUnable to create file.\n");
         exit(EXIT_FAILURE);
     }
 
     fprintf(fPtr, "-----------------------------------------------------------------------\n"
                   "Student: %s \n"
                   "-----------------------------------------------------------------------\n"
-                  "Subject                                           Score          Grade\n"
+                  "Subject                                           Score          Grade \n"
                   "-----------------------------------------------------------------------\n"
             , name);
 
@@ -131,12 +136,12 @@ int main(void)
     }
 
     fprintf(fPtr,"\nAverage Grade: %.2lf \n"
-           "-----------------------------------------------------------------------\n"
+                 "-----------------------------------------------------------------------\n"
             , average);
 
     fclose(fPtr);
 
-    printf("\nFile created and saved successfully. :) \n");
+     printf("\nFile created and saved successfully under filename: %s\n", filename);
 
     return 0;
 }
@@ -163,15 +168,15 @@ int grade_calculator(int score) {
 
     int grade = 0;
 
-    if (90 <= score  && score <= 100) {
+    if (score => 90) {
         grade = 5;
-    } else if (80 <= score  && score <= 89) {
+    } else if (score => 80) {
         grade = 4;
-    } else if (70 <= score  && score <= 79) {
+    } else if (score => 70) {
         grade = 3;
-    } else if (60 <= score  && score <= 69) {
+    } else if (score => 60) {
         grade = 2;
-    } else if (50 <= score  && score <= 59) {
+    } else if (score => 50) {
         grade = 1;
     }
 
