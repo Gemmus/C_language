@@ -47,22 +47,27 @@ Average Grade: 3.67
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX_LENGTH 50
 #define MIN_ITEM 1
 #define MAX_ITEM 100
 #define MIN_GRADE 0
 #define MAX_GRADE 100
+#define DATA_SIZE 1000000
 
 int int_validator(int low, int high);
 int grade_calculator(int score);
 
 int main(void)
 {
+    ////////////////////////////////////
+    //   Handles the user interface   //
+    ////////////////////////////////////
+
     char name[MAX_LENGTH];
     int num_subject = 0, total = 0;
     double average = 0.0;
-
 
     printf("Welcome to the Student Grade Calculator!\n");
     printf("Please enter your name: ");
@@ -101,6 +106,38 @@ int main(void)
            "-----------------------------------------------------------------------\n"
             , average);
 
+    ///////////////////////////////
+    //   Handles the file part   //
+    ///////////////////////////////
+
+    FILE * fPtr;
+    fPtr = fopen("student_grade_ave.txt", "a");
+
+    if(fPtr == NULL)
+    {
+        printf("\nUnable to create file. :(\n");
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(fPtr, "-----------------------------------------------------------------------\n"
+                  "Student: %s \n"
+                  "-----------------------------------------------------------------------\n"
+                  "Subject                                           Score          Grade\n"
+                  "-----------------------------------------------------------------------\n"
+            , name);
+
+    for(int i = 0; i < num_subject; i++) {
+        fprintf(fPtr, "%-50s %3d%% %14d\n", subjects[i], scores[i], grades[i]);
+    }
+
+    fprintf(fPtr,"\nAverage Grade: %.2lf \n"
+           "-----------------------------------------------------------------------\n"
+            , average);
+
+    fclose(fPtr);
+
+    printf("\nFile created and saved successfully. :) \n");
+
     return 0;
 }
 
@@ -123,6 +160,7 @@ int int_validator(int low, int high) {
 }
 
 int grade_calculator(int score) {
+
     int grade = 0;
 
     if (90 <= score  && score <= 100) {
