@@ -170,13 +170,13 @@ int grade_calculator(int score) {
 
     if (score => 90) {
         grade = 5;
-    } else if (score => 80) {
+    } else if (score >= 80) {
         grade = 4;
-    } else if (score => 70) {
+    } else if (score >= 70) {
         grade = 3;
-    } else if (score => 60) {
+    } else if (score >= 60) {
         grade = 2;
-    } else if (score => 50) {
+    } else if (score >= 50) {
         grade = 1;
     }
 
