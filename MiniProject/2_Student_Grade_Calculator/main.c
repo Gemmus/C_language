@@ -11,12 +11,12 @@ Requirements:
 score (as a percentage).
 • Calculate the average grade based on the scores and display it.
 • Determine and display the overall grade based on the following grading scale:
-o 5: 90-100
-o 4: 80-89
-o 3: 70-79
-o 2: 60-69
-o 1: 50-59
-o 0: Below 50
+    o 5: 90-100
+    o 4: 80-89
+    o 3: 70-79
+    o 2: 60-69
+    o 1: 50-59
+    o 0: Below 50
 • The program must also write the same report to a file
 
 Welcome to the Student Grade Calculator!
