@@ -168,7 +168,7 @@ int grade_calculator(int score) {
 
     int grade = 0;
 
-    if (score => 90) {
+    if (score >= 90) {
         grade = 5;
     } else if (score >= 80) {
         grade = 4;
