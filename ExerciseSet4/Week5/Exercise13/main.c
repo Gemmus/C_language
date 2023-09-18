@@ -47,20 +47,28 @@ int main()
 
     printf("\"%s\" opened successfully. Reading from file...\n", filename);
 
-    while (fscanf(fPtr, "%d", &num) != -1)
-    {
-        count++;
-        if(num < lowest) {
+    while (fscanf(fPtr, "%d", &num) == 1) {
+        if (count == 0) {
             lowest = num;
-        }
-        if(num > highest) {
             highest = num;
+        } else {
+            if (num < lowest) {
+                lowest = num;
+            }
+            if (num > highest) {
+                highest = num;
+            }
         }
+        count++;
     }
 
     fclose(fPtr);
 
-    printf("%d number(s) read overall. The lowest was: %d and the highest was: %d.\n", count, lowest, highest);
+    if (count != 0) {
+        printf("%d number(s) read overall. The lowest was: %d and the highest was: %d.\n", count, lowest, highest);
+    } else {
+        printf("%d number read.\n", count);
+    }
 
     return 0;
 }
