@@ -24,6 +24,7 @@ For testing make a few text files with integers using your favourite text editor
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define MAX_LENGTH 50
 
 int main()
