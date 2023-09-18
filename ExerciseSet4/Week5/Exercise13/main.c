@@ -45,7 +45,7 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-    printf("%s opened successfully. Reading integers from file...\n", filename);
+    printf("%s opened successfully. Reading from file...\n", filename);
 
     while (fscanf(fPtr, "%d", &num) != -1)
     {
