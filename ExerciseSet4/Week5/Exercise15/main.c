@@ -58,6 +58,7 @@ int main(void) {
 
         // Putting file into file_array:
         while (count < MAX_SIZE && fscanf(fPtr, "%[^;]; %lf\n", menu[count].name, &menu[count].price) == 2) {
+            menu[count].name[MAX_SIZE-1] = 0;
             count++;
         }
 
@@ -70,8 +71,8 @@ int main(void) {
            "------------------------------------------------------------------\n");
 
     for(int i = 0; i < count; i++) {
-        printf("%8.2lf | %.*s\n", menu[i].price, MAX_SIZE, menu[i].name);
-        //printf("%8.2lf %s\n", menu[i].price, menu[i].name);
+        //printf("%8.2lf | %.*s\n", menu[i].price, MAX_SIZE, menu[i].name);
+        printf("%8.2lf %s\n", menu[i].price, menu[i].name);
     }
 
     return 0;
