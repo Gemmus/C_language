@@ -19,24 +19,18 @@ Then program opens the file for writing in text mode and writes all read lines t
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_CHAR 80
-#define MAX_LINE 100
+#define MAX_LINE_LENGTH 80
+#define MAX_LINES 100
 
 int main(void) {
 
-    char filename[MAX_CHAR];
-    char character;
-    char file_array[MAX_LINE][MAX_CHAR];
-
-    for(int i = 0; i < MAX_LINE; i++) {
-        for(int j = 0; j < MAX_CHAR; j++) {
-            file_array[i][j] = ' ';
-        }
-    }
+    char filename[MAX_LINE_LENGTH];
+    char file_array[MAX_LINES][MAX_LINE_LENGTH];
+    int line_count = 0;
 
     // Asking for filename:
     printf("Enter filename: ");
-    fgets(filename, MAX_CHAR, stdin);
+    fgets(filename, MAX_LINE_LENGTH, stdin);
     filename[strcspn(filename, "\n")] = 0;
 
     // Reading file:
@@ -45,24 +39,16 @@ int main(void) {
 
     if(fPtr == NULL)
     {
-        printf("\nError. Unable to open file \"%s\" for reading. Bye!\n", filename);
+        fprintf(stderr, "\nError. Unable to open file \"%s\" for reading. Bye!\n", filename);
         exit(EXIT_FAILURE);
-    } else {
-        printf("\n\"%s\" opened successfully. Reading from file and putting input into file_array...\n", filename);
 
-        // Putting file into file_array:
-        do {
-            for(int i = 0; i < MAX_LINE; i++) {
-                for(int j = 0; j < MAX_CHAR; j++) {
-                    character = fgetc(fPtr);
-                    if ( character != '\n') {
-                        file_array[i][j] = character;
-                    } else {
-                        j = MAX_CHAR;
-                    }
-                }
-            }
-        } while (character != EOF);
+    } else {
+        printf("\n\"%s\" opened successfully. Reading from file...\n", filename);
+
+        while (!feof(fPtr) && line_count < MAX_LINES) {
+            fgets(file_array[line_count], MAX_LINE_LENGTH, fPtr);
+            line_count++;
+        }
 
         fclose(fPtr);
 
@@ -70,30 +56,25 @@ int main(void) {
     }
 
     // toupper():
-    for(int i = 0; i < MAX_LINE; i++) {
-        for(int j = 0; j < MAX_CHAR; j++) {
+    for(int i = 0; i < line_count; i++) {
+        for(int j = 0; file_array[i][j] != 0; j++) {
             file_array[i][j] = toupper(file_array[i][j]);
         }
     }
+    printf("toupper() applied.\n\n");
 
     // Writing to file:
     fPtr = fopen(filename, "w");
 
     if(fPtr == NULL)
     {
-        printf("Error. Unable to open file \"%s\" for writing. Bye!\n", filename);
+        fprintf(stderr, "Error. Unable to open file \"%s\" for writing. Bye!\n", filename);
         exit(EXIT_FAILURE);
     } else {
-        printf("\"%s\" opened successfully. Writing to file from file_array...\n", filename);
+        printf("\"%s\" opened successfully. Writing to file...\n", filename);
 
-
-        for(int i = 0; i < MAX_LINE; i++) {
-            for(int j = 0; j < MAX_CHAR; j++) {
-                if(file_array[i][j] >= 32) {
-                    fprintf(fPtr, "%c",file_array[i][j]);
-                }
-            }
-            fprintf(fPtr, "\n");
+        for(int i = 0; i < line_count; i++) {
+            fprintf(fPtr, "%s", file_array[i]);
         }
 
         fclose(fPtr);
