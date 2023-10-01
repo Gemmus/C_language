@@ -30,6 +30,7 @@ int main(void) {
             while(getchar() != '\n');
             printf("Invalid input. Enter a number between 0 and 15 or a negative number to quit: ");
         }
+        fflush(stdin);
 
         if (input_num > 15) {
             printf("Input out of range. ");
