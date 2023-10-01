@@ -7,3 +7,74 @@ and leading zeros.
   
 Note: bit numbering starts from 0
 */
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define MAX_VALUE 100
+
+void binaryToHexadecimal(int number);
+
+int main(void) {
+
+    int input_num = 0;
+    bool quit = false;
+    srand(time(0));
+
+    while (false == quit) {
+        printf("Enter a number between 0 and 15 or a negative number to quit: ");
+
+        while (scanf("%d", &input_num) != 1) {
+            while(getchar() != '\n');
+            printf("Invalid input. Enter a number between 0 and 15 or a negative number to quit: ");
+        }
+
+        if (input_num > 15) {
+            printf("Input out of range. ");
+        } else if (input_num < 0) {
+            quit = true;
+        } else if (input_num >= 0 && input_num <= 15){
+            binaryToHexadecimal(rand () % MAX_VALUE);
+        }
+
+    }
+
+    return 0;
+}
+
+void binaryToHexadecimal(int number)
+{
+    char HEXVALUE[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    long long tempDecimal;
+    char hex[65], reverse[65];
+    int index = 0, remainder, hexIndex, revIndex;
+
+    tempDecimal = number;
+
+    while(tempDecimal != 0)
+    {
+        remainder = tempDecimal % 16;
+        hex[index] = HEXVALUE[remainder];
+
+        tempDecimal /= 16;
+        index++;
+    }
+
+    hex[index] = '\0';
+
+    revIndex = 0;
+    hexIndex = index - 1;
+    while(hexIndex >= 0)
+    {
+        reverse[revIndex] = hex[hexIndex];
+        hexIndex--;
+        revIndex++;
+    }
+    reverse[revIndex] = '\0';
+
+    printf("Random decimal number: %d\n", number);
+    printf("Hexadecimal number: 0x%s\n", reverse);
+}
