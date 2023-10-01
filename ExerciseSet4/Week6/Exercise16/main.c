@@ -38,6 +38,7 @@ int main(void) {
     char input[MAX_SIZE] = {0};
     bool end = false;
     int num = 0;
+    int retval = EXIT_SUCCESS;
 
     do {
 
@@ -45,8 +46,8 @@ int main(void) {
 
         if (fgets(input, MAX_SIZE, stdin) == NULL ) {
             fprintf(stderr, "Error reading input.\n");
-            free_allocated_memory(head);
-            exit(EXIT_FAILURE);
+            end = true;
+            retval = EXIT_FAILURE;
         } else {
             input[strcspn(input, "\n")] = 0;
 
@@ -54,12 +55,18 @@ int main(void) {
                 end = true;
             } else if (sscanf(input, "%d", &num) == 1) {
                 nnode* newNode = create_node(num);
-                if (head == NULL) {
-                    head = newNode;
-                    tail = newNode;
+                if (newNode == NULL) {
+                    fprintf(stderr, "Memory allocation failed. The programme exits.\n");
+                    end = true;
+                    retval = EXIT_FAILURE;
                 } else {
-                    tail->next = newNode;
-                    tail = newNode;
+                    if (head == NULL) {
+                        head = newNode;
+                        tail = newNode;
+                    } else {
+                        tail->next = newNode;
+                        tail = newNode;
+                    }
                 }
             } else {
                 printf("No text allowed but 'end'. ");
@@ -68,24 +75,25 @@ int main(void) {
 
     } while (end == false);
 
-    if (head != NULL) {
-        print_numbers(head);
-        free_allocated_memory(head);
-    } else {
-        printf("No number was entered. Bye!");
+    if (retval == EXIT_SUCCESS) {
+        if (head != NULL) {
+            print_numbers(head);
+        } else {
+            printf("No number was entered. Bye!");
+        }
     }
 
-    return 0;
+    free_allocated_memory(head);
+
+    return retval;
 }
 
 nnode* create_node(int num) {
     nnode *newNode = (nnode *) malloc(sizeof(nnode));
-    if (newNode == NULL) {
-        fprintf(stderr, "Memory allocation failed. The programme exits.\n");
-        exit(EXIT_FAILURE);
+    if (newNode != NULL) {
+        newNode->number = num;
+        newNode->next = NULL;
     }
-    newNode->number = num;
-    newNode->next = NULL;
     return newNode;
 }
 
