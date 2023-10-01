@@ -19,7 +19,7 @@ void binaryToHexadecimal(int number);
 
 int main(void) {
 
-    int input_num = 0;
+    int input_num = 0, random_num = 0, shifted_num = 0;
     bool quit = false;
     srand(time(0));
 
@@ -36,9 +36,14 @@ int main(void) {
         } else if (input_num < 0) {
             quit = true;
         } else if (input_num >= 0 && input_num <= 15){
-            binaryToHexadecimal(rand () % MAX_VALUE);
+            random_num = rand () % MAX_VALUE;
+            printf("Random decimal number: %d\n", random_num);
+            binaryToHexadecimal(random_num);
+            shifted_num = random_num >> input_num;
+            // cleaning?
+            printf("Shifted decimal number: %d\n", shifted_num);
+            binaryToHexadecimal(shifted_num);
         }
-
     }
 
     return 0;
@@ -75,6 +80,5 @@ void binaryToHexadecimal(int number)
     }
     reverse[revIndex] = '\0';
 
-    printf("Random decimal number: %d\n", number);
     printf("Hexadecimal number: 0x%s\n", reverse);
 }
