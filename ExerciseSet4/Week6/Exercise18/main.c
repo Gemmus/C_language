@@ -13,13 +13,11 @@ Note: bit numbering starts from 0
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_VALUE 100
-
-void binaryToHexadecimal(int number);
+#define MAX_VALUE 65536
 
 int main(void) {
 
-    int input_num = 0, random_num = 0, shifted_num = 0;
+    int input_num = 0, random_num = 0, shifted_num = 0, masked_num = 0;
     bool quit = false;
     srand(time(0));
 
@@ -39,47 +37,14 @@ int main(void) {
         } else if (input_num >= 0 && input_num <= 15){
             random_num = rand () % MAX_VALUE;
             printf("Random decimal number: %d\n", random_num);
-            binaryToHexadecimal(random_num);
+            printf("Random hexadecimal number: 0x%x\n", random_num);
             shifted_num = random_num >> input_num;
-            // cleaning?
+            masked_num = shifted_num & 0x3F; // 0b00111111
             printf("Shifted decimal number: %d\n", shifted_num);
-            binaryToHexadecimal(shifted_num);
+            printf("Masked decimal number: %d\n", masked_num);
+            printf("Masked hexadecimal number: 0x%02x\n", masked_num);
         }
     }
 
     return 0;
-}
-
-void binaryToHexadecimal(int number)
-{
-    char HEXVALUE[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-
-    long long tempDecimal;
-    char hex[65], reverse[65];
-    int index = 0, remainder, hexIndex, revIndex;
-
-    tempDecimal = number;
-
-    while(tempDecimal != 0)
-    {
-        remainder = tempDecimal % 16;
-        hex[index] = HEXVALUE[remainder];
-
-        tempDecimal /= 16;
-        index++;
-    }
-
-    hex[index] = '\0';
-
-    revIndex = 0;
-    hexIndex = index - 1;
-    while(hexIndex >= 0)
-    {
-        reverse[revIndex] = hex[hexIndex];
-        hexIndex--;
-        revIndex++;
-    }
-    reverse[revIndex] = '\0';
-
-    printf("Hexadecimal number: 0x%s\n", reverse);
 }
