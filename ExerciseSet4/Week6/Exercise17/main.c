@@ -38,18 +38,19 @@ char charGenerator(void);
 int main(void) {
 
     srand(time(0));
-    char word[MAX_LENGTH], password[MAX_LENGTH];
+    char buffer[MAX_LENGTH], word[MAX_LENGTH], password[MAX_LENGTH];
     bool retval = false, quit = false;
 
     while (false == quit) {
         printf("Enter a word or 'stop' to quit programme: ");
-        if (fgets(word, MAX_LENGTH, stdin) == NULL) {
+        if (fgets(buffer, MAX_LENGTH, stdin) == NULL) {
             fprintf(stderr, "Error reading input.\n");
             exit(EXIT_FAILURE);
         } else {
-            word[strcspn(word, "\n")] = 0;
+            buffer[strcspn(buffer, "\n")] = 0;
+            sscanf(buffer, "%s", word);
             if (strcmp(word, "stop") == 0) {
-                printf("You chose to quit. Bye!");
+                printf("You entered 'stop'. Bye!");
                 quit = true;
             } else {
                 retval = passwordGenerator(password, MAX_LENGTH, word);
@@ -68,21 +69,20 @@ int main(void) {
 
 bool passwordGenerator(char *password, int size, const char *word) {
 
-    int word_length = strlen(word), password_length = word_length * 2 + 1, index = 0;
+    int word_length = strlen(word), password_length = word_length * 2 + 1;
+    int index = 0, word_index = 0;
 
     if (password_length > (size - 1)) {
         fflush(stdin);
         return false;
     } else {
-        while (index < password_length + 1) {
-            password[index] = charGenerator();
-            password[++index] = *word;
-            ++index;
-            ++word;
+        while (word_index < word_length) {
+            password[index++] = charGenerator();
+            password[index++] = word[word_index++];
         }
     }
-    password[++index] = charGenerator();
-    password[++index] = 0;
+    password[index++] = charGenerator();
+    password[index++] = 0;
 
     return true;
 }
