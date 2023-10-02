@@ -30,6 +30,7 @@ Program prints: #m%eGtqrHo&p2o+lBimaY
 #include <time.h>
 
 #define MAX_LENGTH 32
+#define HIGHEST_ASCII 128
 
 bool passwordGenerator(char *password, int size, const char *word);
 char charGenerator(void);
@@ -38,8 +39,7 @@ int main(void) {
 
     srand(time(0));
     char word[MAX_LENGTH], password[MAX_LENGTH];
-    bool retval = false;
-    bool quit = false;
+    bool retval = false, quit = false;
 
     while (false == quit) {
         printf("Enter a word or 'stop' to quit programme: ");
@@ -48,7 +48,6 @@ int main(void) {
             exit(EXIT_FAILURE);
         } else {
             word[strcspn(word, "\n")] = 0;
-
             if (strcmp(word, "stop") == 0) {
                 printf("You chose to quit. Bye!");
                 quit = true;
@@ -71,14 +70,13 @@ bool passwordGenerator(char *password, int size, const char *word) {
 
     int word_length = strlen(word), password_length = word_length * 2 + 1, index = 0;
 
-    if ((password_length) > (size - 1)) {
+    if (password_length > (size - 1)) {
         fflush(stdin);
         return false;
     } else {
         while (index < password_length + 1) {
             password[index] = charGenerator();
-            ++index;
-            password[index] = *word;
+            password[++index] = *word;
             ++index;
             ++word;
             }
@@ -90,10 +88,10 @@ bool passwordGenerator(char *password, int size, const char *word) {
 char charGenerator(void){
 
     char random_char;
-
+    
     do {
-        random_char = rand();
+        random_char = rand() % HIGHEST_ASCII;
     } while (isprint(random_char) == 0);
-
+    
     return random_char;
 }
