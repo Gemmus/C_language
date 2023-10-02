@@ -23,72 +23,77 @@ Program prints: #m%eGtqrHo&p2o+lBimaY
 */
 
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
 #include <time.h>
 
-#define MAX_VALUE 100
+#define MAX_LENGTH 32
 
-void binaryToHexadecimal(int number);
+bool passwordGenerator(char *password, int size, const char *word);
+char charGenerator(void);
 
 int main(void) {
 
-    int input_num = 0;
-    bool quit = false;
     srand(time(0));
+    char word[MAX_LENGTH], password[MAX_LENGTH];
+    bool retval = false;
+    bool quit = false;
 
     while (false == quit) {
-        printf("Enter a number between 0 and 15 or a negative number to quit: ");
+        printf("Enter a word or 'stop' to quit programme: ");
+        if (fgets(word, MAX_LENGTH, stdin) == NULL) {
+            fprintf(stderr, "Error reading input.\n");
+            exit(EXIT_FAILURE);
+        } else {
+            word[strcspn(word, "\n")] = 0;
 
-        while (scanf("%d", &input_num) != 1) {
-            while(getchar() != '\n');
-            printf("Invalid input. Enter a number between 0 and 15 or a negative number to quit: ");
+            if (strcmp(word, "stop") == 0) {
+                printf("You chose to quit. Bye!");
+                quit = true;
+            } else {
+                retval = passwordGenerator(password, MAX_LENGTH, word);
+                printf("The original word: %s\n", word);
+                if (true == retval) {
+                    printf("The password: %s\n", password);
+                } else {
+                    printf("Password would exceed the maximum allowed number of characters. Password not generated.\n");
+                }
+            }
         }
-
-        if (input_num > 15) {
-            printf("Input out of range. ");
-        } else if (input_num < 0) {
-            quit = true;
-        } else if (input_num >= 0 && input_num <= 15){
-            binaryToHexadecimal(rand () % MAX_VALUE);
-        }
-
     }
-
+    
     return 0;
 }
 
-void binaryToHexadecimal(int number)
-{
-    char HEXVALUE[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+bool passwordGenerator(char *password, int size, const char *word) {
 
-    long long tempDecimal;
-    char hex[65], reverse[65];
-    int index = 0, remainder, hexIndex, revIndex;
+    int word_length = strlen(word), password_length = word_length * 2 + 1, index = 0;
 
-    tempDecimal = number;
+    if ((password_length) > (size - 1)) {
+        fflush(stdin);
+        return false;
+    } else {
+        while (index < password_length + 1) {
+            password[index] = charGenerator();
+            ++index;
+            password[index] = *word;
+            ++index;
+            ++word;
+            }
+        }
+        password[++index] = charGenerator();
+        return true;
+}
 
-    while(tempDecimal != 0)
-    {
-        remainder = tempDecimal % 16;
-        hex[index] = HEXVALUE[remainder];
+char charGenerator(void){
 
-        tempDecimal /= 16;
-        index++;
-    }
+    char random_char;
 
-    hex[index] = '\0';
+    do {
+        random_char = rand();
+    } while (isprint(random_char) == 0);
 
-    revIndex = 0;
-    hexIndex = index - 1;
-    while(hexIndex >= 0)
-    {
-        reverse[revIndex] = hex[hexIndex];
-        hexIndex--;
-        revIndex++;
-    }
-    reverse[revIndex] = '\0';
-
-    printf("Random decimal number: %d\n", number);
-    printf("Hexadecimal number: 0x%s\n", reverse);
+    return random_char;
 }
