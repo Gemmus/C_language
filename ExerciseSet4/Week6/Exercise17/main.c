@@ -62,7 +62,7 @@ int main(void) {
             }
         }
     }
-    
+
     return 0;
 }
 
@@ -79,19 +79,21 @@ bool passwordGenerator(char *password, int size, const char *word) {
             password[++index] = *word;
             ++index;
             ++word;
-            }
         }
-        password[++index] = charGenerator();
-        return true;
+    }
+    password[++index] = charGenerator();
+    password[++index] = 0;
+
+    return true;
 }
 
 char charGenerator(void){
 
     char random_char;
-    
+
     do {
         random_char = rand() % HIGHEST_ASCII;
     } while (isprint(random_char) == 0);
-    
+
     return random_char;
 }
