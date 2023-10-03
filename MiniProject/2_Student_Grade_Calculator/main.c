@@ -54,99 +54,75 @@ Average Grade: 3.67
 #define MAX_ITEM 100
 #define MIN_SCORE 0
 #define MAX_SCORE 100
+#define SEPARATOR "-----------------------------------------------------------------------"
+#define FILE_NAME "student_report.txt"
 
-int int_validator(int low, int high);
-int grade_calculator(int score);
+void strValidator(char *ptr);
+int intValidator(int low, int high);
+int gradeCalculator(int score);
+void reportGenerator(const char *name, int num_subject, const char subjects[][MAX_LENGTH], const int scores[], const int grades[], double average);
+void fileGenerator(const char *filename, const char *name, int num_subject, const char subjects[][MAX_LENGTH], const int scores[], const int grades[], double average);
+void fprintfValidator(int retval);
 
 int main(void)
 {
-    ///////////////////////////////////////////////////////////////
-    //   Handles the user inputs and score/grade manipulation:   //
-    ///////////////////////////////////////////////////////////////
-
+    /////////////////////////////////////////////////////////////
+    //   Handles the user inputs and score/grade conversion:   //
+    /////////////////////////////////////////////////////////////
     char name[MAX_LENGTH];
     int num_subject = 0, total = 0;
     double average = 0.0;
 
     printf("Welcome to the Student Grade Calculator!\n");
     printf("Please enter your name: ");
-    fgets(name, MAX_LENGTH, stdin);
-    name[strlen(name)-1] = '\0';
-    printf("How many subjects do you want to calculate grades for? ");
-    num_subject = int_validator(MIN_ITEM, MAX_ITEM);
+
+    strValidator(name);
+    printf("How many subjects do you want to calculate grades for?(0-100) ");
+    num_subject = intValidator(MIN_ITEM, MAX_ITEM);
 
     char subjects[num_subject][MAX_LENGTH];
     int scores[num_subject], grades[num_subject];
 
     for(int i = 0; i < num_subject; i++) {
         printf("Enter subject %d name: ", i + 1);
-        fgets(subjects[i], MAX_LENGTH, stdin);
-        subjects[i][strlen(subjects[i])-1] = '\0';
+        strValidator(subjects[i]);
         printf("Enter your score for %s (%d-%d): ", subjects[i], MIN_SCORE, MAX_SCORE);
-        scores[i] = int_validator(MIN_SCORE, MAX_SCORE);
-        grades[i] = grade_calculator(scores[i]);
+        scores[i] = intValidator(MIN_SCORE, MAX_SCORE);
+        grades[i] = gradeCalculator(scores[i]);
         total += grades[i];
     }
 
     average = total / (double) num_subject;
     printf("\n");
 
-    /////////////////////////////////////////
-    //   Creates the report for console:   //
-    /////////////////////////////////////////
+    /////////////////////////////////////////////////////
+    //   Call function to create report for console:   //
+    ////////////////////////////////////////////////////
+    reportGenerator(name, num_subject, subjects, scores, grades, average);
 
-    printf("-----------------------------------------------------------------------\n"
-           "Student: %s \n"
-           "-----------------------------------------------------------------------\n"
-           "Subject                                           Score          Grade \n"
-           "-----------------------------------------------------------------------\n"
-            , name);
-
-    for(int i = 0; i < num_subject; i++) {
-        printf("%-50s %3d%% %14d\n", subjects[i], scores[i], grades[i]);
-    }
-
-    printf("\nAverage Grade: %.2lf \n"
-           "-----------------------------------------------------------------------\n"
-            , average);
-
-    //////////////////////////////////////
-    //   Creates the report for file:   //
-    //////////////////////////////////////
-
-    char filename[MAX_LENGTH] = "grade_report.txt";
-    FILE * fPtr;
-    fPtr = fopen(filename, "w");
-
-    if(fPtr == NULL)
-    {
-        printf("\nUnable to create file.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    fprintf(fPtr, "-----------------------------------------------------------------------\n"
-                  "Student: %s \n"
-                  "-----------------------------------------------------------------------\n"
-                  "Subject                                           Score          Grade \n"
-                  "-----------------------------------------------------------------------\n"
-            , name);
-
-    for(int i = 0; i < num_subject; i++) {
-        fprintf(fPtr, "%-50s %3d%% %14d\n", subjects[i], scores[i], grades[i]);
-    }
-
-    fprintf(fPtr,"\nAverage Grade: %.2lf \n"
-                 "-----------------------------------------------------------------------\n"
-            , average);
-
-    fclose(fPtr);
-
-     printf("\nFile created and saved successfully under filename: %s\n", filename);
+    //////////////////////////////////////////////////////
+    //   Call function to create the report for file:   //
+    /////////////////////////////////////////////////////
+    fileGenerator(FILE_NAME, name, num_subject, subjects, scores, grades, average);
 
     return 0;
 }
 
-int int_validator(int low, int high) {
+////////////////////////////////////////////////////
+//   Function to validate correct string input:   //
+////////////////////////////////////////////////////
+void strValidator(char *ptr){
+
+    fgets(ptr, MAX_LENGTH, stdin);
+    ptr[strlen(ptr)-1] = '\0';
+    fflush(stdin);
+
+}
+
+/////////////////////////////////////////////////////
+//   Function to validate correct integer input:   //
+/////////////////////////////////////////////////////
+int intValidator(int low, int high) {
 
     int number = low - 1;
 
@@ -155,7 +131,7 @@ int int_validator(int low, int high) {
             while (getchar() != '\n');
             printf("Invalid input. Try again: ");
         } else if ((number < low) || (number > high)) {
-            printf("Out of range! Try again: ");
+            printf("Please enter a number between %d and %d. Try again: ", low, high);
         }
     } while ((number < low) || (number > high));
 
@@ -164,9 +140,12 @@ int int_validator(int low, int high) {
     return number;
 }
 
-int grade_calculator(int score) {
+/////////////////////////////////////////////////////
+//   Function to calculate grade based on score:   //
+/////////////////////////////////////////////////////
+int gradeCalculator(int score) {
 
-    int grade = 0, minimum = 50;
+   int grade = 0, minimum = 50;
 
    if ((score - minimum) < 0 ) {
        return grade;
@@ -178,4 +157,67 @@ int grade_calculator(int score) {
    }
 
    return grade;
+}
+
+////////////////////////////////////////////////////
+//   Function to create the report for console:   //
+////////////////////////////////////////////////////
+void reportGenerator(const char *name, int num_subject, const char subjects[][MAX_LENGTH], const int scores[], const int grades[], double average)
+{
+    printf("%s\n"
+           "Student: %-50s\n"
+           "%s\n"
+           "Subject                                           Score          Grade\n"
+           "%s\n", SEPARATOR, name, SEPARATOR, SEPARATOR);
+
+    for (int i = 0; i < num_subject; i++) {
+        printf("%-50s %3d%% %14d\n", subjects[i], scores[i], grades[i]);
+    }
+
+    printf("\nAverage Grade: %.2lf\n"
+           "%s\n", average, SEPARATOR);
+}
+
+/////////////////////////////////////////////////
+//   Function to create the report for file:   //
+/////////////////////////////////////////////////
+void fileGenerator(const char *filename, const char *name, int num_subject, const char subjects[][MAX_LENGTH], const int scores[], const int grades[], double average)
+{
+    FILE *fPtr;
+    int retval = 0;
+
+    if ((fPtr = fopen(filename, "w")) == NULL) {
+        printf("\nError creating file. Exiting...\n");
+        exit(EXIT_FAILURE);
+    } else {
+        retval = fprintf(fPtr, "%s\n"
+                               "Student: %-50s\n"
+                               "%s\n"
+                               "Subject                                           Score          Grade\n"
+                               "%s\n", SEPARATOR, name, SEPARATOR, SEPARATOR);
+        fprintfValidator(retval);
+
+        for (int i = 0; i < num_subject; i++) {
+            retval = fprintf(fPtr, "%-50s %3d%% %14d\n", subjects[i], scores[i], grades[i]);
+            fprintfValidator(retval);
+        }
+
+        retval = fprintf(fPtr, "\nAverage Grade: %.2lf\n"
+                               "%s\n", average, SEPARATOR);
+        fprintfValidator(retval);
+
+        fclose(fPtr);
+        printf("\nFile '%s' created.\n", filename);
+    }
+}
+
+/////////////////////////////////////////////////////
+//   Function to check if fprintf is successful:   //
+/////////////////////////////////////////////////////
+void fprintfValidator(int retval) {
+
+    if (retval < 0) {
+        printf("\nError writing to file. Exiting...\n");
+        exit(EXIT_FAILURE);
+    }
 }
