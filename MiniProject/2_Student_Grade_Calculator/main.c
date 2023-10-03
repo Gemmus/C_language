@@ -168,17 +168,14 @@ int grade_calculator(int score) {
 
     int grade = 0;
 
-    if (score >= 90) {
-        grade = 5;
-    } else if (score >= 80) {
-        grade = 4;
-    } else if (score >= 70) {
-        grade = 3;
-    } else if (score >= 60) {
-        grade = 2;
-    } else if (score >= 50) {
-        grade = 1;
-    }
+   if ((score - 50) < 0 ) {
+       return grade;
+   } else {
+       grade = (score - 50)/10 + 1;
+       if (grade > 5) {
+           grade = 5;
+       }
+   }
 
-    return grade;
+   return grade;
 }
