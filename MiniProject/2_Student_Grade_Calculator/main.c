@@ -166,12 +166,12 @@ int int_validator(int low, int high) {
 
 int grade_calculator(int score) {
 
-    int grade = 0;
+    int grade = 0, minimum = 50;
 
-   if ((score - 50) < 0 ) {
+   if ((score - minimum) < 0 ) {
        return grade;
    } else {
-       grade = (score - 50)/10 + 1;
+       grade = (score - minimum)/10 + 1;
        if (grade > 5) {
            grade = 5;
        }
