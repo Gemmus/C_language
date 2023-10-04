@@ -24,3 +24,62 @@ $GPRMC,092751.000,A,5321.6802,N,00630.3371,W,0.06,31.66,280511,,,A*45
 
 Above the lines that read “NOT,OK”, “BAD” and “BROKEN” have a failing checksum.
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_FILE_LENGTH 64
+#define MAX_LINE_LENGTH 256
+
+unsigned char checksumCalculator(const char *line);
+
+int main(void) {
+    
+    char filename[MAX_FILE_LENGTH], line[MAX_LINE_LENGTH];
+
+    printf("Enter filename: ");
+    fgets(filename, MAX_FILE_LENGTH, stdin);
+    filename[strcspn(filename, "\n")] = 0;
+
+    FILE *fPtr;
+    fPtr = fopen(filename, "r");
+
+    if (fPtr == NULL) {
+        fprintf(stderr, "\nError. Unable to open file \"%s\" for reading. Bye!\n", filename);
+        exit(EXIT_FAILURE);
+    } else {
+        while (fgets(line, MAX_LINE_LENGTH, fPtr)){
+            if (line[0] == '$' && strchr(line, '*')) {
+                unsigned char correctChecksum;
+                unsigned char calculatedChecksum;
+
+                sscanf(line, "%*[^*]*%2hhx", &correctChecksum);
+                calculatedChecksum = checksumCalculator(line);
+
+                if (calculatedChecksum == correctChecksum) {
+                    printf("[ OK ] --> %s", line);
+                } else {
+                    printf("[FAIL] --> %s", line);
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+unsigned char checksumCalculator(const char *line) {
+
+    unsigned char checksum = 0;
+
+    for (int i = 1; i < strlen(line); i++) {
+        if (line[i] == '*') {
+            break;
+        }
+
+        checksum ^= line[i];
+    }
+
+    return checksum;
+}
