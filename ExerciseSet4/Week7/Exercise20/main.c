@@ -43,7 +43,7 @@ int main(void) {
     set_debug_level(debug_lvl);
 
     for (int i = 0; i < 5; i++) {
-        random_debug_lvl = rand() % 5; // Generates random debug level (0-4)
+        random_debug_lvl = rand() % 5;
         dprintf(random_debug_lvl, " - message index %d.\n", i + 1);
     }
 
