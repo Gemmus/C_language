@@ -20,3 +20,50 @@ Get a new random debug level for each message.
 The messages must have at least one numerical argument that is a running index that starts from one. 
 First message has index 1,second message 2, etc.
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "debug.h"
+
+#define LOWEST 0
+#define HIGHEST 4
+
+int intValidator(int low, int high);
+
+int main(void) {
+
+    srand(time(0));
+
+    int debug_lvl = 0, random_debug_lvl = 0;
+
+    printf("Enter the debug level (0-4): ");
+    debug_lvl = intValidator(LOWEST, HIGHEST);
+
+    set_debug_level(debug_lvl);
+
+    for (int i = 0; i < 5; i++) {
+        random_debug_lvl = rand() % 5; // Generates random debug level (0-4)
+        dprintf(random_debug_lvl, " - message index %d.\n", i + 1);
+    }
+
+    return 0;
+}
+
+int intValidator(int low, int high)
+{
+    int number = low - 1;
+
+    do {
+        if (scanf("%d", &number) != 1) {
+            while (getchar() != '\n');
+            printf("Invalid input. Try again: ");
+        } else if ((number < low) || (number > high)) {
+            printf("Please enter a number between %d and %d. Try again: ", low, high);
+        }
+    } while ((number < low) || (number > high));
+
+    fflush(stdin);
+
+    return number;
+}
