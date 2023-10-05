@@ -46,7 +46,7 @@ int main(void) {
     fPtr = fopen(filename, "r");
 
     if (fPtr == NULL) {
-        fprintf(stderr, "\nError. Unable to open file \"%s\" for reading. Bye!\n", filename);
+        fprintf(stderr, "\nError. Unable to open file '%s' for reading. Bye!\n", filename);
         exit(EXIT_FAILURE);
     } else {
         while (fgets(line, MAX_LINE_LENGTH, fPtr)){
