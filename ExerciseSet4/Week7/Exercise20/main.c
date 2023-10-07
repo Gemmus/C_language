@@ -28,6 +28,7 @@ First message has index 1,second message 2, etc.
 
 #define LOWEST 0
 #define HIGHEST 4
+#define MAX_CHAR 50
 
 int intValidator(int low, int high);
 
@@ -65,5 +66,4 @@ int intValidator(int low, int high)
     } while ((number < low) || (number > high));
 
     return number;
-}
 }
