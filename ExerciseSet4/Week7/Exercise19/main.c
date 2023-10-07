@@ -43,13 +43,23 @@ int main(void) {
     } else {
         printf("\n\"%s\" opened successfully. Reading from file...\n", filename);
 
-        while (count < MAX_ITEMS && fscanf(fPtr, "%[^;]; %lf\n", menu[count].name, &menu[count].price) == 2) {
-            count++;
+        fseek(fPtr, 0L, SEEK_END);
+        long size = ftell(fPtr);
+        fseek(fPtr, 0L, SEEK_SET);
+        char *tempBuffer = (char *) malloc(size);
+
+        if(tempBuffer != NULL) {
+            while (count < MAX_ITEMS && fscanf(fPtr, "%[^;]; %lf\n", tempBuffer, &menu[count].price) == 2) {
+                strncpy(menu[count].name, tempBuffer, MAX_CHAR);
+                menu[count].name[MAX_CHAR - 1] = 0;
+                count++;
+            }
+
+            fclose(fPtr);
+            free(tempBuffer);
+
+            printf("... done and file closed.\n\n");
         }
-
-        fclose(fPtr);
-
-        printf("... done and file closed.\n\n");
     }
 
     printf("Please choose the method of sorting.\n"
@@ -78,18 +88,17 @@ int main(void) {
 
 int intValidator(int low, int high)
 {
+    char tempArray[MAX_CHAR];
     int number = low - 1;
 
     do {
-        if (scanf("%d", &number) != 1) {
-            while (getchar() != '\n');
+        fgets(tempArray, MAX_CHAR, stdin);
+        if (sscanf(tempArray, "%d", &number) != 1) {
             printf("Invalid input. Try again: ");
         } else if ((number < low) || (number > high)) {
             printf("Please enter a number between %d and %d. Try again: ", low, high);
         }
     } while ((number < low) || (number > high));
-
-    fflush(stdin);
 
     return number;
 }
