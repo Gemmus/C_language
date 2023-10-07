@@ -1,50 +1,3 @@
-/* 
-Student grade calculator
-Write a program that calculates and displays the final grades for a student based on their scores in
-different subjects. The program should allow the user to input scores for multiple subjects and then
-calculate the average grade and overall grade for the student.
-  
-Requirements:
-• The program should start by asking the user for their name.
-• Then, it should ask the user how many subjects they want to calculate grades for.
-• For each subject, the program should prompt the user to enter the subject name and the
-score (as a percentage).
-• Calculate the average grade based on the scores and display it.
-• Determine and display the overall grade based on the following grading scale:
-    o 5: 90-100
-    o 4: 80-89
-    o 3: 70-79
-    o 2: 60-69
-    o 1: 50-59
-    o 0: Below 50
-• The program must also write the same report to a file
-
-Welcome to the Student Grade Calculator!
-Please enter your name: John Deere
-How many subjects do you want to calculate grades for? 3
-  
-Enter subject 1 name: C Programming
-Enter your score for C Programming (0-100): 85
-  
-Enter subject 2 name: Python
-Enter your score for Python (0-100): 92
-  
-Enter subject 3 name: Computer Architecture
-Enter your score for Computer Architecture (0-100): 68
-  
--------------------------------------------
-Student: John Deere
--------------------------------------------
-Subject                    Score     Grade
--------------------------------------------
-C Programming                85%         4
-Python                       92%         5
-Computer Architecture        68%         2
-
-Average Grade: 3.67
--------------------------------------------
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -81,7 +34,7 @@ int main(void)
     num_subject = intValidator(MIN_ITEM, MAX_ITEM);
 
     char subjects[num_subject][MAX_LENGTH];
-    int scores[num_subject], grades[num_subject];
+    int scores[num_subject], grades[num_subject]; // structure
 
     for(int i = 0; i < num_subject; i++) {
         printf("Enter subject %d name: ", i + 1);
@@ -115,17 +68,16 @@ void strValidator(char *ptr, int max_char)
 {
     fgets(ptr, max_char, stdin);
     ptr[strlen(ptr)-1] = '\0';
-    fflush(stdin);
 
 }
 
 /////////////////////////////////////////////////////
 //   Function to validate correct integer input:   //
 /////////////////////////////////////////////////////
-int intValidator(int low, int high) 
+int intValidator(int low, int high)
 {
     int number = low - 1;
-
+//fgets --> fscanf
     do {
         if (scanf("%d", &number) != 1) {
             while (getchar() != '\n');
@@ -135,7 +87,7 @@ int intValidator(int low, int high)
         }
     } while ((number < low) || (number > high));
 
-    fflush(stdin);
+    //fflush(stdin); // read until
 
     return number;
 }
@@ -143,20 +95,20 @@ int intValidator(int low, int high)
 /////////////////////////////////////////////////////
 //   Function to calculate grade based on score:   //
 /////////////////////////////////////////////////////
-int gradeCalculator(int score) 
+int gradeCalculator(int score)
 {
-   int grade = 0, minimum = 50;
+    int grade = 0, minimum = 50;
 
-   if ((score - minimum) < 0 ) {
-       return grade;
-   } else {
-       grade = (score - minimum)/10 + 1;
-       if (grade > 5) {
-           grade = 5;
-       }
-   }
+    if ((score - minimum) < 0 ) {
+        return grade;
+    } else {
+        grade = (score - minimum)/10 + 1;
+        if (grade > 5) {
+            grade = 5;
+        }
+    }
 
-   return grade;
+    return grade;
 }
 
 ////////////////////////////////////////////////////
@@ -214,7 +166,7 @@ void fileGenerator(const char *filename, const char *name, int num_subject, cons
 /////////////////////////////////////////////////////
 //   Function to check if fprintf is successful:   //
 /////////////////////////////////////////////////////
-void fprintfValidator(int retval) 
+void fprintfValidator(int retval)
 {
     if (retval < 0) {
         printf("\nError writing to file. Exiting...\n");
