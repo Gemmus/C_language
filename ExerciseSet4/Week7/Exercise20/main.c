@@ -52,18 +52,18 @@ int main(void) {
 
 int intValidator(int low, int high)
 {
+    char tempArray[MAX_CHAR];
     int number = low - 1;
 
     do {
-        if (scanf("%d", &number) != 1) {
-            while (getchar() != '\n');
+        fgets(tempArray, MAX_CHAR, stdin);
+        if (sscanf(tempArray, "%d", &number) != 1) {
             printf("Invalid input. Try again: ");
         } else if ((number < low) || (number > high)) {
             printf("Please enter a number between %d and %d. Try again: ", low, high);
         }
     } while ((number < low) || (number > high));
 
-    fflush(stdin);
-
     return number;
+}
 }
