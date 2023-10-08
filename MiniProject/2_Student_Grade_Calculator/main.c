@@ -16,7 +16,6 @@ typedef struct {
     int grade;
 } Subject;
 
-
 void strValidator(char *ptr, int max_char);
 int intValidator(int low, int high);
 int gradeCalculator(int score);
